@@ -1,8 +1,5 @@
 const fs = require('fs');
 // const path = require ('path');
-// const fs = require ('fs');
-// const path = require('path');
-
 
 /*  **  necesario para observar metodos  ** */
 
@@ -34,12 +31,9 @@ function ruta() {
 }
 
 const rutaAleer = ruta();
-
-
-
 console.log(rutaAleer);
 
-// usand arrow function
+// usando arrow function
 const rutaIngresadaPorUsuario = () => filePath = process.argv[2];
 console.log(rutaIngresadaPorUsuario());
 

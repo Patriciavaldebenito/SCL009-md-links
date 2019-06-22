@@ -11,7 +11,7 @@ const fs = require('fs');
 
 
 
-const path = './hello.txt'
+const path = process.argv[2];
 
 fs.access(path, fs.F_OK, (err) => {
   if (err) {

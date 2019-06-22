@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require('path');
+// const path = require('path');
 
 /* ***   ***   ***   ***   ***   ***   ***   ***   ***   ***   ***   ***   ***   ***   ***   ***   ***   ***   */
 
@@ -7,18 +7,18 @@ const path = require('path');
 */
 
 // usando arrow function
- const pathEnteredUser = () => filePath = process.argv[2];
- console.log(pathEnteredUser());    
+//  const pathEnteredUser = () => filePath = process.argv[2];
+//  console.log(pathEnteredUser());    
 // es valor es tomado para ser leido posteriormente
 
 
 /*               INSTANCIA 2 --- LECTURA DE FILE-SYSTEM
 */
- readFile = (pathFile) => readFileWithPath =
-                          fs.readFile(pathFile,'utf-8',(error,data) => { 
-                                if(error){ console.log(`Error ${error}`);} 
-                                else { return data; }
-                          });
+//  readFile = (pathFile) => readFileWithPath =
+//                           fs.readFile(pathFile,'utf-8',(error,data) => { 
+//                                 if(error){ console.log(`Error ${error}`);} 
+//                                 else { return data; }
+//                           });
 
 
 /*               INSTANCIA     ----    1  +  2     --- 
@@ -26,12 +26,14 @@ const path = require('path');
 /*            **                      asincronia                      **          */
 // const fs = require('fs');
 
-new Promise ((resolve,reject) => 
-fs.readFile(process.argv[2],'utf-8',
-     (err,data) => !err ?   resolve(data) : reject(err) )
-           )
-           .then(data => console.log('FILE:\n' + data),
-                 err => console.log('ERROR\n'+ err))
+// new Promise ((resolve,reject) => 
+// fs.readFile(process.argv[2],'utf-8',
+//      (err,data) => !err ?   resolve(data) : reject(err) )
+//            )
+//            .then(data => console.log('FILE:\n' + data),
+//                  err => console.log('ERROR\n'+ err))
+
+
 
 
 /*                INSTANCIA 3 --- COMPROBAR  EXISTENCIA DE ARCHIVO 
@@ -42,12 +44,12 @@ fs.readFile(process.argv[2],'utf-8',
 
 
 //const file example
-const file = 'package.json';
+// const file = 'package.json';
 
 // Check if the file exists in the current directory.
-fs.access(file, fs.constants.F_OK, (err) => {
-  console.log(`${file} ${err ? 'does not exist' : 'exists'}`);
-});
+// fs.access(file, fs.constants.F_OK, (err) => {
+//   console.log(`${file} ${err ? 'does not exist' : 'exists'}`);
+// });
 
 /*                INSTANCIA 4 --- PATH
 
@@ -63,25 +65,30 @@ fs.access(file, fs.constants.F_OK, (err) => {
 */
 
 //  path.basename (ruta [, ext]) 
-path.basename('/foo/bar/baz/asdf/quux.html');
+// path.basename('/foo/bar/baz/asdf/quux.html');
 // Returns: 'quux.html'
 
-path.basename('/foo/bar/baz/asdf/quux.html', '.html');
+// path.basename('/foo/bar/baz/asdf/quux.html', '.html');
 // Returns: 'quux'
 
-path.extname('index.html');
+// path.extname('index.html');
 // Returns: '.html'
 
-path.extname('index.coffee.md');
+// path.extname('index.coffee.md');
 // Returns: '.md'
 
-path.extname('index.');
+// path.extname('index.');
 // Returns: '.'
 
 /* example Ruta Absoluta ----  path.isAbsolute (ruta)
                             El path.isAbsolute()
                             método determina si path
                             es una ruta absoluta. */
+
+
+
+
+
 
 // module.exports = () => {
 //   // ...

@@ -29,7 +29,7 @@ const  options = (argv) => {
   
   } 
  else{
-   console.log("el ingreso es diferente ");
+   console.log("La options ingresada no es correcta (agregar salto de linea) usar   --validate    or   --stats");
  }
 }
 

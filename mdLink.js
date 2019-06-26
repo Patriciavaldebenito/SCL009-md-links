@@ -32,7 +32,7 @@ mdLink.validationOptionRequest = (optionsRequested) => {
     /* 1.2.3  que hacer si   la opcion es   null/undefined */
     mdLink.caseOtherOption();
     /* 1.3    considerar errores ***??***   ....  */
-        console.log("leyendo  para prueba de *** option *** ");  
+        console.log("leyendo  function 1a   *** mdLink.validationOptionRequest *** ");  
 }
     
 /*                                                                                            ejecucion 2 */
@@ -48,16 +48,26 @@ mdLink.validationPathRequest = (pathRequested) => {
     /* 2.3        ***no***    se clasifica en file o directorio*/
     mdLink.caseOtherPath();
 
-  console.log("leyendo   para prueba de ***ruta*** ");  
+  console.log("leyendo  function 1a   *** mdLink.validationPathRequest *** ");  
 }
 
 
 
 /*                                                                                             1.1   validar*/
+// chequear si la option fue ingresada 
+// si la option es diferente a cero 
+// return mdLink.identifyTheOptionEntered
 mdLink.checkTheOptionsEntered = (optionsRequested) => {
-   //if()
+
+   if(optionsRequested != 0 || optionsRequested != ""){
+       let executeIdentifyOption = mdLink.identifyTheOptionEntered(optionsRequested);
+       return executeIdentifyOption; 
+   }
 };
 /*                                                                                             1.2   identificar*/
+//
+//
+//
 mdLink.identifyTheOptionEntered = (optionsRequested) => {
 
 };

@@ -1,45 +1,50 @@
 let mdLink = {};
 
+/*                                                                                           mdLink.mdLink */
 mdLink.mdLink = (pathRequested,optionsRequested) => {
-    console.log(pathRequested);  // probando con console ingreso 
-    console.log(optionsRequested);  // probando con console ingreso 
+   // console.log(pathRequested);  // probando con console ingreso 
+   //console.log(optionsRequested);  // probando con console ingreso 
 
  /*   1. validar opcion  / --validate or -- stats   */
-   mdLink.validationOptionRequest();
- /*   2. validar pathRequested / ruta     */
-    mdLink.validationPathRequest();
+ mdLink.validationOptionRequest(optionsRequested);
+ 
 
+ /*   2. validar pathRequested / ruta     */
+  mdLink.validationPathRequest(pathRequested);
+ 
 }
 
 
-
+// en  archivo  app.js con argv[2]    se toma valor options 
+// valor argumento de                 mdLink.mdLink(x, optionsRequested)
+// valor optionRequest  argumento de  mdLink.validationOptionRequest(...);
 /*                                                                                            ejecucion 1 */
-mdLink.validationOptionRequest = () => { 
+mdLink.validationOptionRequest = (optionsRequested) => { 
+  
     /* 1.1    validar que la opcion fue ingresada */
-    mdLink.checkTheOptionsEntered();
+    mdLink.checkTheOptionsEntered(optionsRequested);
     /* 1.2   identificar si la  opcion es -validate   o   --stats   o  null/undefined */
-    mdLink.identifyTheOptionEntered();
+    mdLink.identifyTheOptionEntered(optionsRequested);
     /* 1.2.1  que hacer si   la opcion es -validate */
-    mdLink.caseOptionValidate();
+    mdLink.caseOptionValidate(optionsRequested);
     /* 1.2.2  que hacer si   la opcion es --stats */  
-    mdLink.caseOptionStats();
+    mdLink.caseOptionStats(optionsRequested);
     /* 1.2.3  que hacer si   la opcion es   null/undefined */
     mdLink.caseOtherOption();
     /* 1.3    considerar errores ***??***   ....  */
         console.log("leyendo  para prueba de *** option *** ");  
 }
     
-
 /*                                                                                            ejecucion 2 */
-mdLink.validationPathRequest = () => {
+mdLink.validationPathRequest = (pathRequested) => {
     /* 2.1    validar que la ruta/path fue ingresada */
-    mdLink.checkThePathEntered();
+    mdLink.checkThePathEntered(pathRequested);
     /* 2.2    identificar si la ruta es   **  file  **   o  **  directory  **  */
-    mdLink.identifyThePathEntered();
+    mdLink.identifyThePathEntered(pathRequested);
     /* 2.2.1  que hacer si la ruta es     **  file **  */
-    mdLink.casePathFile();
+    mdLink.casePathFile(pathRequested);
     /* 2.2.2  que hacer si la ruta es     **  directory **  */
-    mdLink.casePathDirectory();
+    mdLink.casePathDirectory(pathRequested);
     /* 2.3        ***no***    se clasifica en file o directorio*/
     mdLink.caseOtherPath();
 
@@ -49,19 +54,19 @@ mdLink.validationPathRequest = () => {
 
 
 /*                                                                                             1.1   validar*/
-mdLink.checkTheOptionsEntered = () => {
-   if()
+mdLink.checkTheOptionsEntered = (optionsRequested) => {
+   //if()
 };
 /*                                                                                             1.2   identificar*/
-mdLink.identifyTheOptionEntered = () => {
+mdLink.identifyTheOptionEntered = (optionsRequested) => {
 
 };
 /*                                                                                             1.2.1 opcion/validate */
-mdLink.caseOptionValidate = () => {
+mdLink.caseOptionValidate = (optionsRequested) => {
 
 };
 /*                                                                                             1.2.2 opcion/stats */  
-mdLink.caseOptionStats = () => {
+mdLink.caseOptionStats = (optionsRequested) => {
 
 };
 /*                                                                                             1.3   option/null/undefined */
@@ -72,19 +77,19 @@ mdLink.caseOtherOption = () => {
 
 
 /*                                                                                             2.1    validar*/
-mdLink.checkThePathEntered = () => {
+mdLink.checkThePathEntered = (pathRequested) => {
 
 };
  /*                                                                                            2.2    identificar*/
- mdLink.identifyThePathEntered = () => {
+ mdLink.identifyThePathEntered = (pathRequested) => {
 
 };
  /*                                                                                            2.2.1  path/file */
- mdLink.casePathFile = () => {
+ mdLink.casePathFile = (pathRequested) => {
 
 };
  /*                                                                                            2.2.2  path/directory */
- mdLink.casePathDirectory = () => {
+ mdLink.casePathDirectory = (pathRequested) => {
 
 };
  /*                                                                                            2.3    option/null/undefined */

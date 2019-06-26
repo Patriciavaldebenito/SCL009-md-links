@@ -2,15 +2,13 @@ const mdLink = require('/home/laboratoriad318/Escritorio/SCL009-md-links/mdLink.
 
 
 const pathRequest  = process.argv[2];
-// const options = process.argv[3]; 
+const optionsInConsola = process.argv[3]; 
 
-function executionModule(path){
-
-   if(path != 0){
-    mdLink.mdLink(pathRequest);
-   }
+function executionModule(path,options){
 
  
+    mdLink.mdLink(path,options);
+   
 }
 
-executionModule(pathRequest);
+executionModule(pathRequest,optionsInConsola);

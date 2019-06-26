@@ -1,7 +1,8 @@
 let mdLink = {};
 
-mdLink.mdLink = (pathRequested) => {
+mdLink.mdLink = (pathRequested,optionsRequested) => {
     console.log(pathRequested);  // probando con console ingreso 
+    console.log(optionsRequested);  // probando con console ingreso 
 
  /*   1. validar opcion  / --validate or -- stats   */
    mdLink.validationOptionRequest();
@@ -49,7 +50,7 @@ mdLink.validationPathRequest = () => {
 
 /*                                                                                             1.1   validar*/
 mdLink.checkTheOptionsEntered = () => {
-
+   if()
 };
 /*                                                                                             1.2   identificar*/
 mdLink.identifyTheOptionEntered = () => {

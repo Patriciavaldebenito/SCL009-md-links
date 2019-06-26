@@ -1,22 +1,26 @@
 let mdLink = {};
 
-mdLink.mdLink = (pathRequested, options) => {
-    // probando con console ingreso 
-    console.log(pathRequested);  console.log(options);
+mdLink.mdLink = (pathRequested) => {
+    console.log(pathRequested);  // probando con console ingreso 
 
  /*   1. validar opcion  / --validate or -- stats   */
 
  /*   2. validar pathRequested / ruta     */
+    mdLink.validationPath();
+
+}
+
+/* ejecucion 2. */
+mdLink.validationPath = () => {
+console.log("leyendo   para prueba de ***ruta*** ");  
 }
 
 
-mdLink.sum = (a,b) => {
-
-   let sum = a + b;
-   return sum;
-
-   
+mdLink.xyz = () => {
+    console.log("leyendo   mdLink.xyz   para prueba");  
 }
+    
+
 
 
 module.exports = mdLink;

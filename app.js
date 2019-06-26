@@ -1,13 +1,3 @@
- const processArgv = process.argv; 
+const mdLink = require('/home/laboratoriad318/Escritorio/SCL009-md-links/mdLink.js').mdLink; 
 
-//  console.log(processArgv);
-     /* [ '/usr/bin/node',
-          '/home/laboratoriad318/Escritorio/SCL009-md-links/app.js' ] */
-
-//  console.log(processArgv[2]);
-     /* ingreso usuario en consola  */
-
-//console.log(require); 
-    /*  objeto .main .Module .exports */
-
-console.log(require.main); // node_modules
+mdLink(2,3)

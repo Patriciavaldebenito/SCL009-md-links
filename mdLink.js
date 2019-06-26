@@ -5,12 +5,12 @@ mdLink.mdLink = (pathRequested,optionsRequested) => {
    //console.log(pathRequested);  // probando con console ingreso     -->      undefined 
    //console.log(optionsRequested);  // probando con console ingreso  -->      "--validate"
                                      //                               -->      "--stats"
-
  /*   1. validar opcion  / --validate or -- stats   */
  mdLink.validationOptionRequest(optionsRequested);
  
  /*   2. validar pathRequested / ruta     */
   mdLink.validationPathRequest(pathRequested);
+
 }
 
 
@@ -19,8 +19,7 @@ mdLink.mdLink = (pathRequested,optionsRequested) => {
 // valor optionRequest  argumento de  mdLink.validationOptionRequest(...);
 /*                                                                                            ejecucion 1 */
 mdLink.validationOptionRequest = (optionsRequested) => { 
-  // console.log(optionsRequested);
-  
+  console.log(optionsRequested + " en validateOptionRequest  ** dentro de mdlink.mdlink** ");
    
     /* 1.1  que hacer si   la opcion es -validate */
     //mdLink.caseOptionValidate(options);
@@ -34,17 +33,17 @@ mdLink.validationOptionRequest = (optionsRequested) => {
 }
     
 /*                                                                                            ejecucion 2 */
-mdLink.validationPathRequest = (pathRequested) => {
-   // console.log(pathRequested);
-    /* 2.1    validar que la ruta/path fue ingresada */
-    mdLink.checkThePathEntered(pathRequested);
-    /* 2.2    identificar si la ruta es   **  file  **   o  **  directory  **  */
+mdLink.validationPathRequest  = (pathRequested) => {
+
+   console.log(pathRequested + " en validatePathRequest **dentro de mdlink.mdlink");
+   
+    /* 2.1    identificar si la ruta es   **  file  **   o  **  directory  **  */
     mdLink.identifyThePathEntered(pathRequested);
-    /* 2.2.1  que hacer si la ruta es     **  file **  */
+    /* 2.1.1  que hacer si la ruta es     **  file **  */
     mdLink.casePathFile(pathRequested);
-    /* 2.2.2  que hacer si la ruta es     **  directory **  */
+    /* 2.1.2  que hacer si la ruta es     **  directory **  */
     mdLink.casePathDirectory(pathRequested);
-    /* 2.3        ***no***    se clasifica en file o directorio*/
+    /* 2.2        ***no***    se clasifica en file o directorio*/
     mdLink.caseOtherPath();
 
     //console.log("leyendo  function 1a   *** mdLink.validationPathRequest *** ");  
@@ -56,15 +55,12 @@ mdLink.validationPathRequest = (pathRequested) => {
 
 /*                                                                                             1.1 opcion/validate */
 mdLink.caseOptionValidate = (optionsRequested) => {
-
 };
 /*                                                                                             1.2 opcion/stats */  
 mdLink.caseOptionStats = (optionsRequested) => {
-
 };
 /*                                                                                             1.3   option/null/undefined */
 mdLink.caseOtherOption = () => {
-
 };
 
 
@@ -74,8 +70,20 @@ mdLink.checkThePathEntered = (pathRequested) => {
 
 };
  /*                                                                                            2.2    identificar*/
+
  mdLink.identifyThePathEntered = (pathRequested) => {
 
+     console.log(pathRequested + "en Identificar idenntifyThePathEntered");
+     const fsStats = fs.lstatSync(pathRequested);
+
+     if (fsStats.isFile()) {
+         console.log("la ruta es *** un archivo  ***  ");
+         let file = pathRequested;
+       return file;
+
+     } else if (fsStats.isDirectory()) {
+       return 'folder';
+     }
 };
  /*                                                                                            2.2.1  path/file */
  mdLink.casePathFile = (pathRequested) => {

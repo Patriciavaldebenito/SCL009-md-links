@@ -8,27 +8,24 @@ const optionsInConsola = process.argv[2];
 //console.log(optionsInConsola);
 
 function executionModule(path, options) {
-   //console.log(path);
-   //console.log(options);
-        if(options === '--validate') {
-            if(option === '--validate'){
-                // entonces desarrollar esa opcion con la ruta ingresada
-                // *** momentaneamente 
-                // 
-                mdLink.mdLink(path, options);
-                console.log(options);
-            } 
-        } else if(options === '--stats') {
-               // entonces desarrollar esa opcion con la ruta ingresada
-                // *** momentaneamente 
-                // 
-                mdLink.mdLink(path, options);
-                console.log(options);
+    console.log(path + "en executionModule app.js");
+    //console.log(options);
+     /*     validar que la ruta/path fue ingresada */
+    
+    if (path != 0) {
+
+        if (options === '--validate' || options === '--stats') {
+            // entonces desarrollar esa opcion con la ruta ingresada
+            // *** momentaneamente 
+            // 
+            mdLink.mdLink(path, options);
+            console.log(options + " en executionModule app.js");
         } else {
             console.log("ingresa --validate o --stas");
         }
-    
-   
+    }
+
+
 }
 
 executionModule(pathRequest, optionsInConsola);

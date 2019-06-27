@@ -11,20 +11,27 @@ const optionsInConsola = process.argv[2];
 
 
 executionModule = (path, options) => {
-    //console.log(path + "en executionModule app.js");
-    //console.log(options);
-      /*     validar que la ruta/path fue ingresada */
-      /* considerar una funcion para validar ingreso de parametros*/
+    //console.log(path    + "en executionModule app.js");
+    //console.log(options + "en executionModule app.js");
+
+         /*     validar que la ruta/path fue ingresada */
+         /* considerar una funcion para validar ingreso de parametros*/
+    // se importa en app.js 1 validateOptionAndPathInConsola
   
-  
- /*   I N C O R P O R A R       P R O M I S E                    */
-                
+ /*   I N C O R P O R A R       P R O M I S E                    */ 
+
             mdLink.mdLink(path, options);
             console.log(options + " en executionModule app.js");
   
 }
 
-executionModule(pathRequest, optionsInConsola);
+//executionModule(pathRequest, optionsInConsola);
 
 
 
+const mdLinkPromise = new Promise ((resolve,reject )=>{
+    const passvalidation = validateOptionAndPathInConsola; 
+    if(passvalidation){
+        executionModule(pathRequest, optionsInConsola);
+    }
+})

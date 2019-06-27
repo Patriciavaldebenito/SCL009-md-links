@@ -6,9 +6,12 @@
 
 /*                                                                                           mdLink.mdLink */
 mdLink.mdLink = (pathRequested,optionsRequested) => {
-   //console.log(pathRequested);  // probando con console ingreso     -->      undefined 
+
+   console.log(pathRequested + " en mdLink.mdLink"); // probando con console ingreso     -->      undefined 
+   console.log("**************************************************************************"); 
    //console.log(optionsRequested);  // probando con console ingreso  -->      "--validate"
                                      //                               -->      "--stats"
+                                     
  /*   1. validar opcion  / --validate or -- stats   */
  mdLink.validationOptionRequest(optionsRequested);
  

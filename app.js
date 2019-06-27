@@ -7,11 +7,16 @@ const pathRequest = process.argv[1];
 const optionsInConsola = process.argv[2];
 //console.log(optionsInConsola);
 
-function executionModule(path, options) {
-    console.log(path + "en executionModule app.js");
+
+
+ executionModule = (path, options) => {
+    //console.log(path + "en executionModule app.js");
     //console.log(options);
      /*     validar que la ruta/path fue ingresada */
-    
+     /* considerar una funcion para validar ingreso de parametros*/
+
+
+     /* I N C O R P O R A R     P R O M I S E  */
     if (path != 0) {
 
         if (options === '--validate' || options === '--stats') {
@@ -23,10 +28,11 @@ function executionModule(path, options) {
         } else {
             console.log("ingresa --validate o --stas");
         }
+    } else {
+        console.log("no has ingresado una ruta");
     }
-
-
 }
+
 
 executionModule(pathRequest, optionsInConsola);
 

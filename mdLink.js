@@ -1,4 +1,8 @@
-let mdLink = {};
+ const fs = require('fs');
+//  const marked = require('marked');
+//  console.log(marked.Renderer);
+ //console.log(fs);
+ let mdLink = {};
 
 /*                                                                                           mdLink.mdLink */
 mdLink.mdLink = (pathRequested,optionsRequested) => {
@@ -19,7 +23,7 @@ mdLink.mdLink = (pathRequested,optionsRequested) => {
 // valor optionRequest  argumento de  mdLink.validationOptionRequest(...);
 /*                                                                                            ejecucion 1 */
 mdLink.validationOptionRequest = (optionsRequested) => { 
-  console.log(optionsRequested + " en validateOptionRequest  ** dentro de mdlink.mdlink** ");
+  //console.log(optionsRequested + " en validateOptionRequest  ** dentro de mdlink.mdlink** ");
    
     /* 1.1  que hacer si   la opcion es -validate */
     //mdLink.caseOptionValidate(options);
@@ -35,7 +39,7 @@ mdLink.validationOptionRequest = (optionsRequested) => {
 /*                                                                                            ejecucion 2 */
 mdLink.validationPathRequest  = (pathRequested) => {
 
-   console.log(pathRequested + " en validatePathRequest **dentro de mdlink.mdlink");
+   //console.log(pathRequested + " en validatePathRequest **dentro de mdlink.mdlink");
    
     /* 2.1    identificar si la ruta es   **  file  **   o  **  directory  **  */
     mdLink.identifyThePathEntered(pathRequested);
@@ -73,18 +77,25 @@ mdLink.checkThePathEntered = (pathRequested) => {
 
  mdLink.identifyThePathEntered = (pathRequested) => {
 
-     console.log(pathRequested + "en Identificar idenntifyThePathEntered");
-     const fsStats = fs.lstatSync(pathRequested);
+     console.log(pathRequested + " *** en Identificar idenntifyThePathEntered");
 
-     if (fsStats.isFile()) {
-         console.log("la ruta es *** un archivo  ***  ");
-         let file = pathRequested;
-       return file;
+    //  const fsStats = fs.lstatSync(pathRequested);
+    //  console(fsStats);
 
-     } else if (fsStats.isDirectory()) {
-       return 'folder';
-     }
+    //  if (fsStats.isFile()) {
+    //      console.log("la ruta es *** un archivo  ***  ");
+    //      let file = pathRequested;
+    //      return file;
+
+    //  } else if (fsStats.isDirectory()) {
+    //    return 'folder';
+    //  }
+    //  else{
+    //      console.log("--------no clasifica en archivo o directorio")
+    //  }
+
 };
+
  /*                                                                                            2.2.1  path/file */
  mdLink.casePathFile = (pathRequested) => {
 

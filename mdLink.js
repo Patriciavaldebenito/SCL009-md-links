@@ -54,3 +54,16 @@ mdLinks.promiseFileOrDirectory = (pathInConsole) => {
     })
 }
 
+// * 4/aplication booleano *  functions " isFile() "  y " isDirectory() " 
+//     RETURN    file    or   directory
+
+mdLinks.isFileOrDirectory = (consulta) => {
+    // entrega booleano true
+    if (consulta.isFile()) {
+        console.log(" tu archivo es un **** archivo *** ");
+        return 'file';
+    } else if (consulta.isDirectory()) {
+        console.log(" tu archivo es un *** Directorio *** ")
+        return 'directory';
+    }
+}

@@ -173,6 +173,34 @@ mdLinks.getLinks = (route) => {
 }
 
 
+// * 4/ menjaje H.U1 * get de " ruta text-link htttp:...  " en consola
+// 
+mdLinks.arrayHref = (linksarray) => {
+
+    linksarray.forEach(element => {
+
+        return new Promise((resolve, reject) => {
+
+            fetch.fetchUrl(element.href, (error, meta, body) => {
+                if (meta) {
+                    resolve(meta.status);
+                } else {
+                    reject(error);
+                }
+            })
+
+        })
+            .then((res) => {
+
+                console.log(element.route + "     " + element.href + "     " + element.text);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    });
+}
+
+
 
 // * 5/ export de módulo
 module.exports = mdLinks;

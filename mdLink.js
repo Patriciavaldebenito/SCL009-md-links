@@ -24,5 +24,15 @@ mdLinks.mdLinks = (pathInConsole, options) => {
   
     mdLinks.callFileOrDirectory(pathExecute); // * clasificando is File Or Directory *
     
-   
+}
+
+//* 3 * function - convert * ruta * normalize y resolve *
+mdLinks.pathConvertAbsolute = (pathInConsole) => {
+    // primero
+    let pathResolve = path.resolve(pathInConsole);
+    // segundo 
+    let pathConvertAbsolute = path.normalize(pathResolve);
+    // ** 
+    // console.log( "pathConvertAbsolute es :" + pathConvertAbsolute);
+    return pathConvertAbsolute;
 }

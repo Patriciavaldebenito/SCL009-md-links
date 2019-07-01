@@ -92,6 +92,20 @@ mdLinks.callFileOrDirectory = (pathInConsole) => {
         .catch(err => { console.log(err); })
 }
 
+// * 4/ pathInConsole is =  file *  ejecutar => call getLinks  
+
+mdLinks.callGetLink = (route) => {
+    // llamando a getLinks - para obtener json con los links
+    mdLinks.getLinks(route)
+        .then(res => {
+            //let jsonHref = JSON.stringify(res);
+            //console.log(" jsonHref :" + jsonHref);
+            mdLinks.arrayHref(res);
+        })
+        .catch(err => {
+            console.log("Err catch :", err);
+        })
+}
 
 
 

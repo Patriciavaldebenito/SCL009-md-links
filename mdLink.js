@@ -67,3 +67,6 @@ mdLinks.isFileOrDirectory = (consulta) => {
         return 'directory';
     }
 }
+
+// * 5/ export de módulo
+module.exports = mdLinks;

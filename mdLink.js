@@ -142,6 +142,37 @@ mdLinks.mdGetFromDirectory = (pathInConsole) => {
 }
 
 
+// * 4/extraction of links * 
+// Declaring Promise GetLinks: Read file to extract liks.
+mdLinks.getLinks = (route) => {
+    console.log("en getLinks route es : " + route);
+    return new Promise((resolve, reject) => {
+        fs.readFile(route, 'utf-8', function (err, data) {
+            if (err) {
+                reject(err);
+                console.log("Error al leer la ruta")
+            }
+            else {
+                let links = [];
+                const renderer = new marked.Renderer();
+                renderer.link = function (href, title, text) {
+                    links.push({
+                        route: route,
+                        text: text,
+                        href: href
+                        //   title:title
+                    })
+                }
+                marked(data, { renderer: renderer });
+                resolve(links);
+                // let linkString = JSON.stringify(links);
+                //console.log(links);
+            }
+        })
+    })
+}
+
+
 
 // * 5/ export de módulo
 module.exports = mdLinks;

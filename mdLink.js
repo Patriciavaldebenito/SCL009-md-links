@@ -1,116 +1,210 @@
- const fs = require('fs');
-//  const marked = require('marked');
-//  console.log(marked.Renderer);
- //console.log(fs);
- let mdLink = {};
+// *** 0 ***  Declaracion de variales 
+let mdLinks = {};
 
-/*                                                                                           mdLink.mdLink */
-mdLink.mdLink = (pathRequested,optionsRequested) => {
+// *** 1 *** Declaracion de Modulos 
+const fs = require('fs');
+const path = require('path');
+const fileHound = require('filehound');
+const marked = require('marked');
+const fetch = require('fetch');
 
-   console.log(pathRequested + " en mdLink.mdLink"); // probando con console ingreso     -->      undefined 
-   console.log("**************************************************************************"); 
-   //console.log(optionsRequested);  // probando con console ingreso  -->      "--validate"
-                                     //                               -->      "--stats"
-                                     
- /*   1. validar opcion  / --validate or -- stats   */
- mdLink.validationOptionRequest(optionsRequested);
- 
- /*   2. validar pathRequested / ruta     */
-  mdLink.validationPathRequest(pathRequested);
-
-}
+//  MODULO IMPORTADO EN INDEX.JS  
 
 
-// en  archivo  app.js con argv[2]    se toma valor options 
-// valor argumento de                 mdLink.mdLink(x, optionsRequested)
-// valor optionRequest  argumento de  mdLink.validationOptionRequest(...);
-/*                                                                                            ejecucion 1 */
-mdLink.validationOptionRequest = (optionsRequested) => { 
-  //console.log(optionsRequested + " en validateOptionRequest  ** dentro de mdlink.mdlink** ");
-   
-    /* 1.1  que hacer si   la opcion es -validate */
-    //mdLink.caseOptionValidate(options);
-    /* 1.2  que hacer si   la opcion es --stats */  
-    //mdLink.caseOptionStats(options);
 
-    /* 1.3  que hacer si   la opcion es   null/undefined */
-    //mdLink.caseOtherOption();
-    /* 1.3    considerar errores ***??***   ....  */
-    //    console.log("leyendo  function 1a   *** mdLink.validationOptionRequest *** ");  
-}
+mdLinks.mdLinks = (pathInConsole, options) => {
+  
+    if (options === '--validate') {
+        let options = {};
+        console.log(" options.validate" + options.validate);
+        return options.validate = true; 
+    }
+    // secuencia 
+    // *** 3 ***   obteniendo ruta absoluta 
+    let pathExecute = mdLinks.pathConvertAbsolute(pathInConsole);
+    console.log("----" + pathExecute);
+    // *** 4 ***   sabiendo que es archivo o directorio eejecutar action con ellas
+    // probando con pathExecute y pathInConsole
+    mdLinks.callFileOrDirectory(pathExecute); // **  **  clasificando isFileOrDirectory ** **
     
-/*                                                                                            ejecucion 2 */
-mdLink.validationPathRequest  = (pathRequested) => {
-
-   //console.log(pathRequested + " en validatePathRequest **dentro de mdlink.mdlink");
    
-    /* 2.1    identificar si la ruta es   **  file  **   o  **  directory  **  */
-    mdLink.identifyThePathEntered(pathRequested);
-    /* 2.1.1  que hacer si la ruta es     **  file **  */
-    mdLink.casePathFile(pathRequested);
-    /* 2.1.2  que hacer si la ruta es     **  directory **  */
-    mdLink.casePathDirectory(pathRequested);
-    /* 2.2        ***no***    se clasifica en file o directorio*/
-    mdLink.caseOtherPath();
+}
 
-    //console.log("leyendo  function 1a   *** mdLink.validationPathRequest *** ");  
+//*** 3 *** funcion para convertir la *** ruta  normalizar y resolver *** 
+mdLinks.pathConvertAbsolute = (pathInConsole) => {
+    // primero
+    let pathResolve = path.resolve(pathInConsole);
+    // segundo 
+    let pathConvertAbsolute = path.normalize(pathResolve);
+    // ** 
+    // console.log( "pathConvertAbsolute es :" + pathConvertAbsolute);
+    return pathConvertAbsolute;
+}
+// funcion para clasificar en  ** archivo **  o ** directorio **
+// con una PROMESA metodo fs.stat
+mdLinks.promiseFileOrDirectory = (pathInConsole) => {
+    //console.log("dentro de pathFileOrDirectory :" + pathInConsole);
+    return new Promise((resolve, reject) => {
+        fs.stat(pathInConsole, (err, salida) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(salida);
+            }
+        })
+    })
+}
+// ***  *** funcion uso de funciones " isFile() "  y " isDirectory() " RETURN file or directory
+mdLinks.isFileOrDirectory = (consulta) => {
+    // entrega booleano true
+    if (consulta.isFile()) {
+        console.log(" tu archivo es un **** archivo *** ");
+        return 'file';
+    } else if (consulta.isDirectory()) {
+        console.log(" tu archivo es un *** Directorio *** ")
+        return 'directory';
+    }
+}
+
+// ***  ***  funcion para llamar a PROMESA uso de then y catch
+// ***********************************************************
+// ***  ***  llamada en mdLinks.mdLinks  
+mdLinks.callFileOrDirectory = (pathInConsole) => {
+
+    mdLinks.promiseFileOrDirectory(pathInConsole)
+        .then(salida => {
+
+            let fileOrDirectory = mdLinks.isFileOrDirectory(salida);
+
+            console.log("dentro de callFileOrDirectory - fileOrDirectory es : " + fileOrDirectory);
+
+            if (fileOrDirectory === 'directory') {
+
+                 mdLinks.mdGetFromDirectory(pathInConsole);
+                // console.log("pathInConsole  es :" + pathInConsole);
+                return 'executeReadDirectory'
+
+            } else if (fileOrDirectory === 'file') {
+                 mdLinks.callGetLink(pathInConsole);
+                // console.log("pathInConsole  es :" + pathInConsole);
+                return 'executeReadFile'
+            }
+        })
+        .catch(err => { console.log(err); })
+}
+// **********************************************************
+
+// *** si es  *** ' file ' ***  call getLinks // cambiarlo para cambiar fetch al otro lado 
+mdLinks.callGetLink = (route) => {
+    // llamando a getLinks - para obtener json con los links
+    mdLinks.getLinks(route)
+        .then(res => {
+            //let jsonHref = JSON.stringify(res);
+            //console.log(" jsonHref :" + jsonHref);
+            //console.log(res);
+            mdLinks.arrayHref(res);
+            // res.forEach(element => { console.log("elemento :" +element.href);
+            // });
+        })
+        .catch(err => {
+            console.log("Err catch :", err);
+        })
+}
+
+// *** si es  *** ' directory ' ***  call getLinks // leer archivos md
+// Declaring Promise mdGetFromDirectory: Read the directory to extract the "md" files
+mdLinks.mdGetFromDirectory = (pathInConsole) => {
+    return new Promise((resolve, reject) => {
+        fs.readdir(pathInConsole, 'utf-8', function (err, files) {
+            //console.log("la data dentro de la promesa readdir es : " + files)
+            if (err) {
+                reject(err);
+                console.log("Error al leer la ruta dir")
+            } else {
+                resolve(files);
+                files = fileHound.create()
+                    .paths(pathInConsole)
+                    .ext('md')
+                    .find();
+                files
+                    .then(res => {
+                        Promise.all(res)
+                            .then(res => {
+                                res.map(e => {
+                                    //console.log("son e" + e);
+                                    return mdLinks.callGetLink(e);
+                                })
+                            })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
+        })
+    })
+}
+
+
+
+//----------------------------------------------------------------------------
+
+// ***  4.3 *** Declaring Promise GetLinks: Read file to extract liks.
+mdLinks.getLinks = (route) => {
+    console.log("en getLinks route es : " + route);
+    return new Promise((resolve, reject) => {
+        fs.readFile(route, 'utf-8', function (err, data) {
+            if (err) {
+                reject(err);
+                console.log("Error al leer la ruta")
+            }
+            else {
+                let links = [];
+                const renderer = new marked.Renderer();
+                renderer.link = function (href, title, text) {
+                    links.push({
+                        route: route,
+                        text: text,
+                        href: href
+                        //   title:title
+                    })
+                }
+                marked(data, { renderer: renderer });
+                resolve(links);
+                // let linkString = JSON.stringify(links);
+                //console.log(links);
+            }
+        })
+    })
+}
+
+//vcpa
+// *** 5 *** Funcion Con fetch
+mdLinks.arrayHref = (linksarray) => {
+
+    linksarray.forEach(element => {
+
+        return new Promise((resolve, reject) => {
+
+            fetch.fetchUrl(element.href, (error, meta, body) => {
+                if (meta) {
+                    resolve(meta.status);
+                } else {
+                    reject(error);
+                }
+            })
+
+        })
+            .then((res) => {
+
+                console.log(element.route + "     " + element.href + "     " + element.text);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    });
 }
 
 
 
 
-
-/*                                                                                             1.1 opcion/validate */
-mdLink.caseOptionValidate = (optionsRequested) => {
-};
-/*                                                                                             1.2 opcion/stats */  
-mdLink.caseOptionStats = (optionsRequested) => {
-};
-/*                                                                                             1.3   option/null/undefined */
-mdLink.caseOtherOption = () => {
-};
-
-
-
-/*                                                                                             2.1    validar*/
-mdLink.checkThePathEntered = (pathRequested) => {
-
-};
- /*                                                                                            2.2    identificar*/
-
- mdLink.identifyThePathEntered = (pathRequested) => {
-
-     console.log(pathRequested + " *** en Identificar idenntifyThePathEntered");
-
-    //  const fsStats = fs.lstatSync(pathRequested);
-    //  console(fsStats);
-
-    //  if (fsStats.isFile()) {
-    //      console.log("la ruta es *** un archivo  ***  ");
-    //      let file = pathRequested;
-    //      return file;
-
-    //  } else if (fsStats.isDirectory()) {
-    //    return 'folder';
-    //  }
-    //  else{
-    //      console.log("--------no clasifica en archivo o directorio")
-    //  }
-
-};
-
- /*                                                                                            2.2.1  path/file */
- mdLink.casePathFile = (pathRequested) => {
-
-};
- /*                                                                                            2.2.2  path/directory */
- mdLink.casePathDirectory = (pathRequested) => {
-
-};
- /*                                                                                            2.3    option/null/undefined */
- mdLink.caseOtherPath = () => {
-
-};
-
-
-module.exports = mdLink;
+module.exports = mdLinks;

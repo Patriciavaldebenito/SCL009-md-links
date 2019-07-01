@@ -1,23 +1,13 @@
-
-export const validateOptionInConsole = (optionReadInConsole) => {
-
-    if(optionReadInConsole != 0 && optionReadInConsole != "" ){
-        return true;
-    }
+// //    let ValidationYiEnteredInConsole = fVAi;
+// //    let path = yi; 
+// export const validationYiEnteredInConsole = (path) => {
+//  // incorporar condiciones a validation Option 
+//     if(path){
+//         console.log("   ** fVAI **  retorno   ** path **    ");
+//         return true;
+//     }
      
-}
-
-export const validatePathInConsola = (pathReadInConsole) => {
-    if( pathReadInConsole != 0 &&  pathReadInConsole != "" ){
-        return true;
-    }
-}
-
-export const validateOptionAndPathInConsola = (validateOptionInConsola,validatePathInConsola) => {
-    if(validateOptionInConsola  || validatePathInConsola ){
-        return true;
-    }
-}
+// }
 
 
 

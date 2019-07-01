@@ -36,3 +36,21 @@ mdLinks.pathConvertAbsolute = (pathInConsole) => {
     // console.log( "pathConvertAbsolute es :" + pathConvertAbsolute);
     return pathConvertAbsolute;
 }
+
+
+// * 4/clasification * Function to classify in * file * or * directory. *
+//       PROMiSE   -   método fs.stat
+
+mdLinks.promiseFileOrDirectory = (pathInConsole) => {
+    //console.log("dentro de pathFileOrDirectory :" + pathInConsole);
+    return new Promise((resolve, reject) => {
+        fs.stat(pathInConsole, (err, salida) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(salida);
+            }
+        })
+    })
+}
+

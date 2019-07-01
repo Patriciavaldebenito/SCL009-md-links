@@ -107,6 +107,40 @@ mdLinks.callGetLink = (route) => {
         })
 }
 
+// * 4/ pathInConsole is =  directory *  ejecutar => mdGetFromDirectory 
+//                   read files .md 
+
+mdLinks.mdGetFromDirectory = (pathInConsole) => {
+    return new Promise((resolve, reject) => {
+        fs.readdir(pathInConsole, 'utf-8', function (err, files) {
+            //console.log("la data dentro de la promesa readdir es : " + files)
+            if (err) {
+                reject(err);
+                console.log("Error al leer la ruta dir")
+            } else {
+                resolve(files);
+                files = fileHound.create()
+                    .paths(pathInConsole)
+                    .ext('md')
+                    .find();
+                files
+                    .then(res => {
+                        Promise.all(res)
+                            .then(res => {
+                                res.map(e => {
+                                    //console.log("e :" + e);
+                                    return mdLinks.callGetLink(e);
+                                })
+                            })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
+        })
+    })
+}
+
 
 
 // * 5/ export de módulo

@@ -68,5 +68,32 @@ mdLinks.isFileOrDirectory = (consulta) => {
     }
 }
 
+// * 4/ identify-action-post * función para llamar a PROMise (then y catch)
+ 
+mdLinks.callFileOrDirectory = (pathInConsole) => {
+
+    mdLinks.promiseFileOrDirectory(pathInConsole)
+        .then(salida => {
+
+            let fileOrDirectory = mdLinks.isFileOrDirectory(salida);
+
+            if (fileOrDirectory === 'directory') {
+
+                 mdLinks.mdGetFromDirectory(pathInConsole);
+                // console.log("pathInConsole  es :" + pathInConsole);
+                return 'executeReadDirectory'
+
+            } else if (fileOrDirectory === 'file') {
+                 mdLinks.callGetLink(pathInConsole);
+                // console.log("pathInConsole  es :" + pathInConsole);
+                return 'executeReadFile'
+            }
+        })
+        .catch(err => { console.log(err); })
+}
+
+
+
+
 // * 5/ export de módulo
 module.exports = mdLinks;

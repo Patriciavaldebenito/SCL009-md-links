@@ -1,3 +1,6 @@
+// 1:22 2 DE JULIO 1:13
+
+
 // * 0 *  Declaration of variables
 let mdLinks = {};
 
@@ -87,6 +90,9 @@ mdLinks.mdLinks = (pathInConsole, options) => {
         }
     }
 
+
+
+    
   /* **   ***   **   ***   **   ***   **   ***   **   ***  **  */ 
     //if (options === '--validate') {
       //  let options = {};

@@ -81,7 +81,7 @@ mdLinks.mdLinks = (pathInConsole, options) => {
            // pregunguntando si es directory o archivo
             console.log("lulu - again --- YES"); 
              // P R O B A N D O     1:17 
-            mdLinks.callFileOrDirectory(pathInConsole);
+           mdLinks.callFileOrDirectory(pathInConsole);
         } else {
         console.log("la ruta ingresa - es incorrecta");
         }
@@ -123,16 +123,16 @@ mdLinks.promiseFileOrDirectory = (pathInConsole) => {
 // * 4/aplication booleano *  functions " isFile() "  y " isDirectory() " 
 //     RETURN    file    or   directory
 
-mdLinks.isFileOrDirectory = (consulta) => {
-    // entrega booleano true
-    if (consulta.isFile()) {
-        console.log(" tu archivo es un **** archivo *** ");
-        return 'file';
-    } else if (consulta.isDirectory()) {
-        console.log(" tu archivo es un *** Directorio *** ")
-        return 'directory';
-    }
-}
+// mdLinks.isFileOrDirectory = (consulta) => {
+//     // entrega booleano true
+//     if (consulta.isFile()) {
+//         console.log(" tu archivo es un **** archivo *** ");
+//         return 'file';
+//     } else if (consulta.isDirectory()) {
+//         console.log(" tu archivo es un *** Directorio *** ")
+//         return 'directory';
+//     }
+// }
 
 // * 4/ identify-action-post * función para llamar a PROMise (then y catch)
  
@@ -140,16 +140,19 @@ mdLinks.callFileOrDirectory = (pathInConsole) => {
 
     mdLinks.promiseFileOrDirectory(pathInConsole)
         .then(salida => {
+           
+            let trueOrFalseIsFile = salida.isFile();
+            let trueOrFalseDirectory = salida.isDirectory();
+            console.log(" salida.isFile(); " + trueOrFalseIsFile);
+            console.log(" salida.isFile(); " + trueOrFalseDirectory );
 
-            let fileOrDirectory = mdLinks.isFileOrDirectory(salida);
-
-            if (fileOrDirectory === 'directory') {
+            if (trueOrFalseDirectory) {
 
                  mdLinks.mdGetFromDirectory(pathInConsole);
                 // console.log("pathInConsole  es :" + pathInConsole);
                 return 'executeReadDirectory'
 
-            } else if (fileOrDirectory === 'file') {
+            } else if (trueOrFalseIsFile) {
                  mdLinks.callGetLink(pathInConsole);
                 // console.log("pathInConsole  es :" + pathInConsole);
                 return 'executeReadFile'

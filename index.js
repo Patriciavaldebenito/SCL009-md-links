@@ -4,9 +4,6 @@
 // importando    mdLink
 const mdLinks = require('/home/laboratoriad318/Escritorio/SCL009-md-links/mdLink.js');
 //console.log(mdLink);
-const fetch = require('fetch');
-//
-
 
 
 
@@ -15,6 +12,10 @@ const fetch = require('fetch');
 let pathInConsola = process.argv[2];
 
 let options = process.argv[3];
+
+
+
+
 
 
 /*

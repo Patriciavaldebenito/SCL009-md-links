@@ -10,3 +10,6 @@ el sistema operativo, sistema de archivos, redes, etc...
 En este proyecto nos alejamos un poco del navegador para construir un programa
 que se ejecute usando Node.js, donde aprenderemos sobre cómo interactuar con el
 sistema, archivos y con el entorno (proceso, env, stdin/stdout/stderr), ...
+
+
+ a consitnuacion una pagina con error 404 [oag con error 404 ](https://www.ecured.cu/Jack_Calvo)

@@ -33,9 +33,6 @@ mdLinks.mdLinks = (pathInConsole) => {
     })
 }
 
-
-
-
 module.exports = mdLinks;
 
 

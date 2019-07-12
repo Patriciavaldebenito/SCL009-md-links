@@ -27,7 +27,7 @@ mdLinks.mdLinks = (pathInConsole) => {
                 marked(data, { renderer: renderer });
                 resolve(links);
                 // let linkString = JSON.stringify(links);
-                //console.log("la salida de getList =" + JSON.stringify(links));
+                //console.log("getList =" + JSON.stringify(links));
             }
         })
     })

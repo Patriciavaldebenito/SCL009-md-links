@@ -1,5 +1,5 @@
 # Markdown Links Extractor
-a consitnuacion una pagina con error 404 [oag con error 404 ](https://www.ecured.cu/Jack_Calvo)
+
 
 Pequeña librería que analiza archivos de tipo [Markdown](https://es.wikipedia.org/wiki/Markdown)(.md) para verificar los links que contengan y entregar algunas estadísticas.
 
@@ -16,7 +16,6 @@ Para el correcto funcionamiento de este proyecto necesitas tener instalado [Node
 - [Path](https://nodejs.org/api/path.html)
 - [File System](https://nodejs.org/api/fs.html)
 - [fetch](https://www.npmjs.com/package/fetch)
-- [fileHound](https://www.npmjs.com/package/filehound)
 - [marked](https://www.npmjs.com/package/marked)
 
 ### Instalación 
@@ -33,7 +32,7 @@ Instalar los paquetes necesarios
 ```
 npm install --save path
 var fs = require('fs')
-npm install colors
+npm install chalk
 ```
 
 ## Snippets de uso 
@@ -43,9 +42,9 @@ Este proyecto puede ser utilizado a través de la terminal CLI
 Por ejemplo:
 k# Markdown Links Extractor
 
-Pequeña librería que analiza archivos de tipo [Markdown](https://es.wikipedia.org/wiki/Markdown)(.md) para verificar los links que contengan y entregar algunas estadísticas.
+Pequeña librería que analiza archivos de tipo [Markdown](https://es.wikipedia.org/wiki/Markdown)(.md) para verificar los links que contengan.
 
-## Comenzando 🚀
+## Comenzando 
 
 En la pestaña 'releases' encontrarás el archivo .zip correspondiente al proyecto, el que deberás descargar para su posterior utilización.
 

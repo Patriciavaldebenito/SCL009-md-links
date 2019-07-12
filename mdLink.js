@@ -10,7 +10,7 @@ mdLinks.mdLinks = (pathInConsole) => {
         fs.readFile(route, 'utf-8', function (err, data) {
             if (err) {
                 reject(err);
-                console.log("Error al leer la ruta")
+               
             }
             else {
                 let links = [];
@@ -32,22 +32,6 @@ mdLinks.mdLinks = (pathInConsole) => {
         })
     })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
